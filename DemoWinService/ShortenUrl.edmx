@@ -1,0 +1,1214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="shortenURLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="City_Blocks_IPv4_GeoLite2">
+          <Key>
+            <PropertyRef Name="PK_City_ID_IPV4" />
+          </Key>
+          <Property Name="PK_City_ID_IPV4" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="network" Type="varchar" MaxLength="50" />
+          <Property Name="Start_IPv4_address" Type="nvarchar" MaxLength="50" />
+          <Property Name="End_IPv4_address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Start_IP_num" Type="nvarchar" MaxLength="50" />
+          <Property Name="End_IP_num" Type="nvarchar" MaxLength="50" />
+          <Property Name="geoname_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="registered_country_geoname_id" Type="varchar" MaxLength="50" />
+          <Property Name="represented_country_geoname_id" Type="varchar" MaxLength="50" />
+          <Property Name="is_anonymous_proxy" Type="varchar" MaxLength="50" />
+          <Property Name="is_satellite_provider" Type="varchar" MaxLength="50" />
+          <Property Name="postal_code" Type="varchar" MaxLength="50" />
+          <Property Name="latitude" Type="varchar" MaxLength="50" />
+          <Property Name="longitude" Type="varchar" MaxLength="50" />
+          <Property Name="accuracy_radius" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'shortenURL.dbo.City_Locations_GeoLite2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="City_Locations_GeoLite2">
+          <Key>
+            <PropertyRef Name="PK_City_Location_ID" />
+          </Key>
+          <Property Name="PK_City_Location_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="geoname_id" Type="varchar" MaxLength="50" />
+          <Property Name="locale_code" Type="varchar" MaxLength="50" />
+          <Property Name="continent_code" Type="varchar" MaxLength="50" />
+          <Property Name="continent_name" Type="varchar" MaxLength="50" />
+          <Property Name="country_iso_code" Type="varchar" MaxLength="50" />
+          <Property Name="country_name" Type="varchar" MaxLength="50" />
+          <Property Name="subdivision_1_iso_code" Type="varchar" MaxLength="50" />
+          <Property Name="subdivision_1_name" Type="varchar" MaxLength="50" />
+          <Property Name="subdivision_2_iso_code" Type="varchar" MaxLength="50" />
+          <Property Name="subdivision_2_name" Type="varchar" MaxLength="50" />
+          <Property Name="city_name" Type="varchar" MaxLength="50" />
+          <Property Name="metro_code" Type="varchar" MaxLength="50" />
+          <Property Name="time_zone" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="PK_ClientID" />
+          </Key>
+          <Property Name="PK_ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginDate" Type="datetime" />
+          <Property Name="LoginCount" Type="int" />
+          <Property Name="APIKey" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CountryData">
+          <Key>
+            <PropertyRef Name="PK_Country_ID" />
+          </Key>
+          <Property Name="PK_Country_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Start_IPv4_address" Type="nvarchar(max)" />
+          <Property Name="End_IPv4_address" Type="nvarchar(max)" />
+          <Property Name="Start_IP_num" Type="nvarchar(max)" />
+          <Property Name="End_IP_num" Type="nvarchar(max)" />
+          <Property Name="Country_code" Type="nvarchar(max)" />
+          <Property Name="Country_name" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'shortenURL.dbo.CountryData_GeoLite2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CountryData_GeoLite2">
+          <Key>
+            <PropertyRef Name="PK_Country_ID_GeoLite" />
+          </Key>
+          <Property Name="PK_Country_ID_GeoLite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="geoname_id" Type="varchar" MaxLength="50" />
+          <Property Name="locale_code" Type="varchar" MaxLength="50" />
+          <Property Name="continent_code" Type="varchar" MaxLength="50" />
+          <Property Name="continent_name" Type="varchar" MaxLength="50" />
+          <Property Name="country_iso_code" Type="varchar" MaxLength="50" />
+          <Property Name="country_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CountryData_IPv4_GeoLite2">
+          <Key>
+            <PropertyRef Name="PK_Country_ID_IPV4" />
+          </Key>
+          <Property Name="PK_Country_ID_IPV4" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="network" Type="varchar" MaxLength="50" />
+          <Property Name="Start_IPv4_address" Type="nvarchar(max)" />
+          <Property Name="End_IPv4_address" Type="nvarchar(max)" />
+          <Property Name="Start_IP_num" Type="nvarchar(max)" />
+          <Property Name="End_IP_num" Type="nvarchar(max)" />
+          <Property Name="geoname_id" Type="varchar" MaxLength="50" />
+          <Property Name="registered_country_geoname_id" Type="varchar" MaxLength="50" />
+          <Property Name="represented_country_geoname_id" Type="varchar" MaxLength="50" />
+          <Property Name="is_anonymous_proxy" Type="varchar" MaxLength="50" />
+          <Property Name="is_satellite_provider" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="PKErrorLogId" />
+          </Key>
+          <Property Name="PKErrorLogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="StackTrace" Type="nvarchar(max)" />
+          <Property Name="ErrorMessage" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="freeGeoipData">
+          <Key>
+            <PropertyRef Name="PK_freeGeoip_id" />
+          </Key>
+          <Property Name="PK_freeGeoip_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ipv4" Type="nvarchar(max)" />
+          <Property Name="ip_num" Type="bigint" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="nvarchar(max)" />
+          <Property Name="Latitude" Type="nvarchar(max)" />
+          <Property Name="Longitude" Type="nvarchar(max)" />
+          <Property Name="MetroCode" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Locations_Data">
+          <Key>
+            <PropertyRef Name="PK_LOC_ID" />
+          </Key>
+          <Property Name="PK_LOC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="locId" Type="int" Nullable="false" />
+          <Property Name="country" Type="nvarchar(max)" />
+          <Property Name="region" Type="nvarchar(max)" />
+          <Property Name="city" Type="nvarchar(max)" />
+          <Property Name="postalCode" Type="nvarchar(max)" />
+          <Property Name="latitude" Type="nvarchar(max)" />
+          <Property Name="longitude" Type="nvarchar(max)" />
+          <Property Name="metroCode" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="LoginHistory">
+          <Key>
+            <PropertyRef Name="PKLoginHistoryId" />
+          </Key>
+          <Property Name="PKLoginHistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FKPersonId" Type="int" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="IpAddress" Type="nvarchar(max)" />
+          <Property Name="LoginDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Master_Location">
+          <Key>
+            <PropertyRef Name="PK_MASTERID" />
+          </Key>
+          <Property Name="PK_MASTERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Start_IPv4_address" Type="nvarchar(max)" />
+          <Property Name="End_IPv4_address" Type="nvarchar(max)" />
+          <Property Name="startIpNum" Type="bigint" Nullable="false" />
+          <Property Name="endIpNum" Type="bigint" Nullable="false" />
+          <Property Name="locId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RIDDATA">
+          <Key>
+            <PropertyRef Name="PK_Rid" />
+          </Key>
+          <Property Name="PK_Rid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampaignName" Type="nvarchar(max)" />
+          <Property Name="ReferenceNumber" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="Pwd" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="FK_ClientId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SHORTURLDATA">
+          <Key>
+            <PropertyRef Name="PK_Shorturl" />
+          </Key>
+          <Property Name="PK_Shorturl" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ipv4" Type="nvarchar(max)" />
+          <Property Name="Ipv6" Type="nvarchar(max)" />
+          <Property Name="ip_num" Type="bigint" />
+          <Property Name="Browser" Type="nvarchar" MaxLength="50" />
+          <Property Name="Browser_version" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="nvarchar(max)" />
+          <Property Name="Latitude" Type="nvarchar(max)" />
+          <Property Name="Longitude" Type="nvarchar(max)" />
+          <Property Name="MetroCode" Type="nvarchar(max)" />
+          <Property Name="Req_url" Type="nvarchar(max)" />
+          <Property Name="UserAgent" Type="nvarchar(max)" />
+          <Property Name="Hostname" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeviceType" Type="nvarchar(max)" />
+          <Property Name="IsMobileDevice" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="FK_Uid" Type="int" />
+          <Property Name="FK_RID" Type="int" />
+          <Property Name="FK_ClientID" Type="int" />
+          <Property Name="FK_City_Master_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tmp_rownum_update">
+          <Key>
+            <PropertyRef Name="PK_RowUpdate_ID" />
+          </Key>
+          <Property Name="PK_RowUpdate_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="row_update" Type="bigint" />
+        </EntityType>
+        <EntityType Name="UIDDATA">
+          <Key>
+            <PropertyRef Name="PK_Uid" />
+          </Key>
+          <Property Name="PK_Uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_RID" Type="int" />
+          <Property Name="FK_ClientID" Type="int" />
+          <Property Name="ReferenceNumber" Type="nvarchar(max)" />
+          <Property Name="Longurl" Type="nvarchar(max)" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UniqueNumber" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_RIDDATA_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="RIDDATA" Type="Self.RIDDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="PK_ClientID" />
+            </Principal>
+            <Dependent Role="RIDDATA">
+              <PropertyRef Name="FK_ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHORTURLDATA_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="SHORTURLDATA" Type="Self.SHORTURLDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="PK_ClientID" />
+            </Principal>
+            <Dependent Role="SHORTURLDATA">
+              <PropertyRef Name="FK_ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHORTURLDATA_RIDDATA">
+          <End Role="RIDDATA" Type="Self.RIDDATA" Multiplicity="0..1" />
+          <End Role="SHORTURLDATA" Type="Self.SHORTURLDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RIDDATA">
+              <PropertyRef Name="PK_Rid" />
+            </Principal>
+            <Dependent Role="SHORTURLDATA">
+              <PropertyRef Name="FK_RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHORTURLDATA_SHORTURLDATA">
+          <End Role="SHORTURLDATA" Type="Self.SHORTURLDATA" Multiplicity="1" />
+          <End Role="SHORTURLDATA1" Type="Self.SHORTURLDATA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SHORTURLDATA">
+              <PropertyRef Name="PK_Shorturl" />
+            </Principal>
+            <Dependent Role="SHORTURLDATA1">
+              <PropertyRef Name="PK_Shorturl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHORTURLDATA_UIDDATA">
+          <End Role="UIDDATA" Type="Self.UIDDATA" Multiplicity="0..1" />
+          <End Role="SHORTURLDATA" Type="Self.SHORTURLDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UIDDATA">
+              <PropertyRef Name="PK_Uid" />
+            </Principal>
+            <Dependent Role="SHORTURLDATA">
+              <PropertyRef Name="FK_Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UIDDATA_UIDDATA">
+          <End Role="UIDDATA" Type="Self.UIDDATA" Multiplicity="1" />
+          <End Role="UIDDATA1" Type="Self.UIDDATA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UIDDATA">
+              <PropertyRef Name="PK_Uid" />
+            </Principal>
+            <Dependent Role="UIDDATA1">
+              <PropertyRef Name="PK_Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="InsertintoUIDRID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="typediff" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="uidorrid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertRIDData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CampaignName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="referencenumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="pwd" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="clientid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertSHORTURLData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ipv4" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ipv6" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="browser" Type="nvarchar" Mode="In" />
+          <Parameter Name="browser_version" Type="nvarchar" Mode="In" />
+          <Parameter Name="ipnum" Type="nvarchar" Mode="In" />
+          <Parameter Name="req_url" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="useragent" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="hostname" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeviceType" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IsMobiledevice" Type="nvarchar" Mode="In" />
+          <Parameter Name="fk_uid" Type="int" Mode="In" />
+          <Parameter Name="fk_rid" Type="int" Mode="In" />
+          <Parameter Name="FK_clientid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertUIDData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fk_rid" Type="int" Mode="In" />
+          <Parameter Name="fk_clientid" Type="int" Mode="In" />
+          <Parameter Name="referencenumber" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="longurl" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="mobilenumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="IPAddressToInteger" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bigint">
+          <Parameter Name="ip" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetALLCOUNTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FilterBy" Type="int" Mode="In" />
+          <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="DateTo" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="spGetALLCOUNTS1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="DateTo" Type="datetime" Mode="In" />
+          <Parameter Name="rid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetCampaignSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rid" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="spGetDashBoardSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FkClientId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetDashBoardSummary1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FkClientId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="shortenURLModelStoreContainer">
+          <EntitySet Name="City_Blocks_IPv4_GeoLite2" EntityType="Self.City_Blocks_IPv4_GeoLite2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountryData" EntityType="Self.CountryData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountryData_IPv4_GeoLite2" EntityType="Self.CountryData_IPv4_GeoLite2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="freeGeoipData" EntityType="Self.freeGeoipData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locations_Data" EntityType="Self.Locations_Data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginHistory" EntityType="Self.LoginHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Master_Location" EntityType="Self.Master_Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RIDDATA" EntityType="Self.RIDDATA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHORTURLDATA" EntityType="Self.SHORTURLDATA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmp_rownum_update" EntityType="Self.tmp_rownum_update" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UIDDATA" EntityType="Self.UIDDATA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City_Locations_GeoLite2" EntityType="Self.City_Locations_GeoLite2" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [City_Locations_GeoLite2].[PK_City_Location_ID] AS [PK_City_Location_ID], 
+    [City_Locations_GeoLite2].[geoname_id] AS [geoname_id], 
+    [City_Locations_GeoLite2].[locale_code] AS [locale_code], 
+    [City_Locations_GeoLite2].[continent_code] AS [continent_code], 
+    [City_Locations_GeoLite2].[continent_name] AS [continent_name], 
+    [City_Locations_GeoLite2].[country_iso_code] AS [country_iso_code], 
+    [City_Locations_GeoLite2].[country_name] AS [country_name], 
+    [City_Locations_GeoLite2].[subdivision_1_iso_code] AS [subdivision_1_iso_code], 
+    [City_Locations_GeoLite2].[subdivision_1_name] AS [subdivision_1_name], 
+    [City_Locations_GeoLite2].[subdivision_2_iso_code] AS [subdivision_2_iso_code], 
+    [City_Locations_GeoLite2].[subdivision_2_name] AS [subdivision_2_name], 
+    [City_Locations_GeoLite2].[city_name] AS [city_name], 
+    [City_Locations_GeoLite2].[metro_code] AS [metro_code], 
+    [City_Locations_GeoLite2].[time_zone] AS [time_zone]
+    FROM [dbo].[City_Locations_GeoLite2] AS [City_Locations_GeoLite2]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CountryData_GeoLite2" EntityType="Self.CountryData_GeoLite2" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CountryData_GeoLite2].[PK_Country_ID_GeoLite] AS [PK_Country_ID_GeoLite], 
+    [CountryData_GeoLite2].[geoname_id] AS [geoname_id], 
+    [CountryData_GeoLite2].[locale_code] AS [locale_code], 
+    [CountryData_GeoLite2].[continent_code] AS [continent_code], 
+    [CountryData_GeoLite2].[continent_name] AS [continent_name], 
+    [CountryData_GeoLite2].[country_iso_code] AS [country_iso_code], 
+    [CountryData_GeoLite2].[country_name] AS [country_name]
+    FROM [dbo].[CountryData_GeoLite2] AS [CountryData_GeoLite2]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_RIDDATA_Client" Association="Self.FK_RIDDATA_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="RIDDATA" EntitySet="RIDDATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHORTURLDATA_Client" Association="Self.FK_SHORTURLDATA_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="SHORTURLDATA" EntitySet="SHORTURLDATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHORTURLDATA_RIDDATA" Association="Self.FK_SHORTURLDATA_RIDDATA">
+            <End Role="RIDDATA" EntitySet="RIDDATA" />
+            <End Role="SHORTURLDATA" EntitySet="SHORTURLDATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHORTURLDATA_SHORTURLDATA" Association="Self.FK_SHORTURLDATA_SHORTURLDATA">
+            <End Role="SHORTURLDATA" EntitySet="SHORTURLDATA" />
+            <End Role="SHORTURLDATA1" EntitySet="SHORTURLDATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHORTURLDATA_UIDDATA" Association="Self.FK_SHORTURLDATA_UIDDATA">
+            <End Role="UIDDATA" EntitySet="UIDDATA" />
+            <End Role="SHORTURLDATA" EntitySet="SHORTURLDATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UIDDATA_UIDDATA" Association="Self.FK_UIDDATA_UIDDATA">
+            <End Role="UIDDATA" EntitySet="UIDDATA" />
+            <End Role="UIDDATA1" EntitySet="UIDDATA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="shortenURLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City_Blocks_IPv4_GeoLite2">
+          <Key>
+            <PropertyRef Name="PK_City_ID_IPV4" />
+          </Key>
+          <Property Name="PK_City_ID_IPV4" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="network" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Start_IPv4_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="End_IPv4_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Start_IP_num" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="End_IP_num" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="geoname_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="registered_country_geoname_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="represented_country_geoname_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_anonymous_proxy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_satellite_provider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="postal_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="accuracy_radius" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="PK_ClientID" />
+          </Key>
+          <Property Name="PK_ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginDate" Type="DateTime" Precision="3" />
+          <Property Name="LoginCount" Type="Int32" />
+          <Property Name="APIKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="RIDDATAs" Relationship="Self.FK_RIDDATA_Client" FromRole="Client" ToRole="RIDDATA" />
+          <NavigationProperty Name="SHORTURLDATAs" Relationship="Self.FK_SHORTURLDATA_Client" FromRole="Client" ToRole="SHORTURLDATA" />
+        </EntityType>
+        <EntityType Name="CountryData">
+          <Key>
+            <PropertyRef Name="PK_Country_ID" />
+          </Key>
+          <Property Name="PK_Country_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Start_IPv4_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="End_IPv4_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Start_IP_num" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="End_IP_num" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CountryData_IPv4_GeoLite2">
+          <Key>
+            <PropertyRef Name="PK_Country_ID_IPV4" />
+          </Key>
+          <Property Name="PK_Country_ID_IPV4" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="network" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Start_IPv4_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="End_IPv4_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Start_IP_num" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="End_IP_num" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="geoname_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="registered_country_geoname_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="represented_country_geoname_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_anonymous_proxy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_satellite_provider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="PKErrorLogId" />
+          </Key>
+          <Property Name="PKErrorLogId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Locations_Data">
+          <Key>
+            <PropertyRef Name="PK_LOC_ID" />
+          </Key>
+          <Property Name="PK_LOC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="locId" Type="Int32" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="region" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="postalCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="metroCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LoginHistory">
+          <Key>
+            <PropertyRef Name="PKLoginHistoryId" />
+          </Key>
+          <Property Name="PKLoginHistoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FKPersonId" Type="Int32" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IpAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LoginDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Master_Location">
+          <Key>
+            <PropertyRef Name="PK_MASTERID" />
+          </Key>
+          <Property Name="PK_MASTERID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Start_IPv4_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="End_IPv4_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="startIpNum" Type="Int64" Nullable="false" />
+          <Property Name="endIpNum" Type="Int64" Nullable="false" />
+          <Property Name="locId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RIDDATA">
+          <Key>
+            <PropertyRef Name="PK_Rid" />
+          </Key>
+          <Property Name="PK_Rid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampaignName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReferenceNumber" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="FK_ClientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_RIDDATA_Client" FromRole="RIDDATA" ToRole="Client" />
+          <NavigationProperty Name="SHORTURLDATAs" Relationship="Self.FK_SHORTURLDATA_RIDDATA" FromRole="RIDDATA" ToRole="SHORTURLDATA" />
+        </EntityType>
+        <EntityType Name="SHORTURLDATA">
+          <Key>
+            <PropertyRef Name="PK_Shorturl" />
+          </Key>
+          <Property Name="PK_Shorturl" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ipv4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ipv6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ip_num" Type="Int64" />
+          <Property Name="Browser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Browser_version" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetroCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Req_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserAgent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Hostname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsMobileDevice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="FK_Uid" Type="Int32" />
+          <Property Name="FK_RID" Type="Int32" />
+          <Property Name="FK_ClientID" Type="Int32" />
+          <Property Name="FK_City_Master_id" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_SHORTURLDATA_Client" FromRole="SHORTURLDATA" ToRole="Client" />
+          <NavigationProperty Name="RIDDATA" Relationship="Self.FK_SHORTURLDATA_RIDDATA" FromRole="SHORTURLDATA" ToRole="RIDDATA" />
+          <NavigationProperty Name="SHORTURLDATA1" Relationship="Self.FK_SHORTURLDATA_SHORTURLDATA" FromRole="SHORTURLDATA" ToRole="SHORTURLDATA1" />
+          <NavigationProperty Name="SHORTURLDATA2" Relationship="Self.FK_SHORTURLDATA_SHORTURLDATA" FromRole="SHORTURLDATA1" ToRole="SHORTURLDATA" />
+          <NavigationProperty Name="UIDDATA" Relationship="Self.FK_SHORTURLDATA_UIDDATA" FromRole="SHORTURLDATA" ToRole="UIDDATA" />
+        </EntityType>
+        <EntityType Name="UIDDATA">
+          <Key>
+            <PropertyRef Name="PK_Uid" />
+          </Key>
+          <Property Name="PK_Uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_RID" Type="Int32" />
+          <Property Name="FK_ClientID" Type="Int32" />
+          <Property Name="ReferenceNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Longurl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UniqueNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SHORTURLDATAs" Relationship="Self.FK_SHORTURLDATA_UIDDATA" FromRole="UIDDATA" ToRole="SHORTURLDATA" />
+          <NavigationProperty Name="UIDDATA1" Relationship="Self.FK_UIDDATA_UIDDATA" FromRole="UIDDATA" ToRole="UIDDATA1" />
+          <NavigationProperty Name="UIDDATA2" Relationship="Self.FK_UIDDATA_UIDDATA" FromRole="UIDDATA1" ToRole="UIDDATA" />
+        </EntityType>
+        <EntityType Name="City_Locations_GeoLite2">
+          <Key>
+            <PropertyRef Name="PK_City_Location_ID" />
+          </Key>
+          <Property Name="PK_City_Location_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="geoname_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="locale_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="continent_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="continent_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="country_iso_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="country_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="subdivision_1_iso_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="subdivision_1_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="subdivision_2_iso_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="subdivision_2_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="metro_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="time_zone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CountryData_GeoLite2">
+          <Key>
+            <PropertyRef Name="PK_Country_ID_GeoLite" />
+          </Key>
+          <Property Name="PK_Country_ID_GeoLite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="geoname_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="locale_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="continent_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="continent_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="country_iso_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="country_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_RIDDATA_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="RIDDATA" Type="Self.RIDDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="PK_ClientID" />
+            </Principal>
+            <Dependent Role="RIDDATA">
+              <PropertyRef Name="FK_ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHORTURLDATA_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="SHORTURLDATA" Type="Self.SHORTURLDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="PK_ClientID" />
+            </Principal>
+            <Dependent Role="SHORTURLDATA">
+              <PropertyRef Name="FK_ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHORTURLDATA_RIDDATA">
+          <End Role="RIDDATA" Type="Self.RIDDATA" Multiplicity="0..1" />
+          <End Role="SHORTURLDATA" Type="Self.SHORTURLDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RIDDATA">
+              <PropertyRef Name="PK_Rid" />
+            </Principal>
+            <Dependent Role="SHORTURLDATA">
+              <PropertyRef Name="FK_RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHORTURLDATA_SHORTURLDATA">
+          <End Role="SHORTURLDATA" Type="Self.SHORTURLDATA" Multiplicity="1" />
+          <End Role="SHORTURLDATA1" Type="Self.SHORTURLDATA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SHORTURLDATA">
+              <PropertyRef Name="PK_Shorturl" />
+            </Principal>
+            <Dependent Role="SHORTURLDATA1">
+              <PropertyRef Name="PK_Shorturl" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHORTURLDATA_UIDDATA">
+          <End Role="UIDDATA" Type="Self.UIDDATA" Multiplicity="0..1" />
+          <End Role="SHORTURLDATA" Type="Self.SHORTURLDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UIDDATA">
+              <PropertyRef Name="PK_Uid" />
+            </Principal>
+            <Dependent Role="SHORTURLDATA">
+              <PropertyRef Name="FK_Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UIDDATA_UIDDATA">
+          <End Role="UIDDATA" Type="Self.UIDDATA" Multiplicity="1" />
+          <End Role="UIDDATA1" Type="Self.UIDDATA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UIDDATA">
+              <PropertyRef Name="PK_Uid" />
+            </Principal>
+            <Dependent Role="UIDDATA1">
+              <PropertyRef Name="PK_Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="shortenURLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="City_Blocks_IPv4_GeoLite2" EntityType="Self.City_Blocks_IPv4_GeoLite2" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="CountryDatas" EntityType="Self.CountryData" />
+          <EntitySet Name="CountryData_IPv4_GeoLite2" EntityType="Self.CountryData_IPv4_GeoLite2" />
+          <EntitySet Name="ErrorLogs" EntityType="Self.ErrorLog" />
+          <EntitySet Name="Locations_Data" EntityType="Self.Locations_Data" />
+          <EntitySet Name="LoginHistories" EntityType="Self.LoginHistory" />
+          <EntitySet Name="Master_Location" EntityType="Self.Master_Location" />
+          <EntitySet Name="RIDDATAs" EntityType="Self.RIDDATA" />
+          <EntitySet Name="SHORTURLDATAs" EntityType="Self.SHORTURLDATA" />
+          <EntitySet Name="UIDDATAs" EntityType="Self.UIDDATA" />
+          <EntitySet Name="City_Locations_GeoLite2" EntityType="Self.City_Locations_GeoLite2" />
+          <EntitySet Name="CountryData_GeoLite2" EntityType="Self.CountryData_GeoLite2" />
+          <AssociationSet Name="FK_RIDDATA_Client" Association="Self.FK_RIDDATA_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="RIDDATA" EntitySet="RIDDATAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHORTURLDATA_Client" Association="Self.FK_SHORTURLDATA_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="SHORTURLDATA" EntitySet="SHORTURLDATAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHORTURLDATA_RIDDATA" Association="Self.FK_SHORTURLDATA_RIDDATA">
+            <End Role="RIDDATA" EntitySet="RIDDATAs" />
+            <End Role="SHORTURLDATA" EntitySet="SHORTURLDATAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHORTURLDATA_SHORTURLDATA" Association="Self.FK_SHORTURLDATA_SHORTURLDATA">
+            <End Role="SHORTURLDATA" EntitySet="SHORTURLDATAs" />
+            <End Role="SHORTURLDATA1" EntitySet="SHORTURLDATAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHORTURLDATA_UIDDATA" Association="Self.FK_SHORTURLDATA_UIDDATA">
+            <End Role="UIDDATA" EntitySet="UIDDATAs" />
+            <End Role="SHORTURLDATA" EntitySet="SHORTURLDATAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UIDDATA_UIDDATA" Association="Self.FK_UIDDATA_UIDDATA">
+            <End Role="UIDDATA" EntitySet="UIDDATAs" />
+            <End Role="UIDDATA1" EntitySet="UIDDATAs" />
+          </AssociationSet>
+          <FunctionImport Name="InsertintoUIDRID">
+            <Parameter Name="typediff" Mode="In" Type="String" />
+            <Parameter Name="uidorrid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertRIDData">
+            <Parameter Name="CampaignName" Mode="In" Type="String" />
+            <Parameter Name="referencenumber" Mode="In" Type="String" />
+            <Parameter Name="pwd" Mode="In" Type="String" />
+            <Parameter Name="clientid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertSHORTURLData">
+            <Parameter Name="ipv4" Mode="In" Type="String" />
+            <Parameter Name="ipv6" Mode="In" Type="String" />
+            <Parameter Name="browser" Mode="In" Type="String" />
+            <Parameter Name="browser_version" Mode="In" Type="String" />
+            <Parameter Name="ipnum" Mode="In" Type="String" />
+            <Parameter Name="req_url" Mode="In" Type="String" />
+            <Parameter Name="useragent" Mode="In" Type="String" />
+            <Parameter Name="hostname" Mode="In" Type="String" />
+            <Parameter Name="DeviceType" Mode="In" Type="String" />
+            <Parameter Name="IsMobiledevice" Mode="In" Type="String" />
+            <Parameter Name="fk_uid" Mode="In" Type="Int32" />
+            <Parameter Name="fk_rid" Mode="In" Type="Int32" />
+            <Parameter Name="FK_clientid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertUIDData">
+            <Parameter Name="fk_rid" Mode="In" Type="Int32" />
+            <Parameter Name="fk_clientid" Mode="In" Type="Int32" />
+            <Parameter Name="referencenumber" Mode="In" Type="String" />
+            <Parameter Name="longurl" Mode="In" Type="String" />
+            <Parameter Name="mobilenumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(shortenURLModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(shortenURLModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="spGetALLCOUNTS" ReturnType="Collection(shortenURLModel.spGetALLCOUNTS_Result)">
+            <Parameter Name="FilterBy" Mode="In" Type="Int32" />
+            <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spGetALLCOUNTS1" ReturnType="Collection(shortenURLModel.spGetALLCOUNTS1_Result)">
+            <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="rid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetCampaignSummary" ReturnType="Collection(Int32)">
+          <Parameter Name="rid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetDashBoardSummary" ReturnType="Collection(Int32)">
+          <Parameter Name="FkClientId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetDashBoardSummary1" ReturnType="Collection(Int32)">
+          <Parameter Name="FkClientId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tmp_rownum_update" EntityType="shortenURLModel.tmp_rownum_update" />
+          <EntitySet Name="freeGeoipDatas" EntityType="shortenURLModel.freeGeoipData" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spGetALLCOUNTS_Result">
+          <Property Type="Int32" Name="Year" Nullable="true" />
+          <Property Type="Int32" Name="YearsCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetALLCOUNTS1_Result">
+          <Property Type="DateTime" Name="RequestedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="RequestCount" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="tmp_rownum_update">
+          <Key>
+            <PropertyRef Name="PK_RowUpdate_ID" />
+          </Key>
+          <Property Name="PK_RowUpdate_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="row_update" Type="Int64" />
+        </EntityType>
+        <EntityType Name="freeGeoipData">
+          <Key>
+            <PropertyRef Name="PK_freeGeoip_id" />
+          </Key>
+          <Property Name="PK_freeGeoip_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ipv4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ip_num" Type="Int64" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetroCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="shortenURLModelStoreContainer" CdmEntityContainer="shortenURLEntities">
+          <EntitySetMapping Name="City_Blocks_IPv4_GeoLite2">
+            <EntityTypeMapping TypeName="shortenURLModel.City_Blocks_IPv4_GeoLite2">
+              <MappingFragment StoreEntitySet="City_Blocks_IPv4_GeoLite2">
+                <ScalarProperty Name="PK_City_ID_IPV4" ColumnName="PK_City_ID_IPV4" />
+                <ScalarProperty Name="network" ColumnName="network" />
+                <ScalarProperty Name="Start_IPv4_address" ColumnName="Start_IPv4_address" />
+                <ScalarProperty Name="End_IPv4_address" ColumnName="End_IPv4_address" />
+                <ScalarProperty Name="Start_IP_num" ColumnName="Start_IP_num" />
+                <ScalarProperty Name="End_IP_num" ColumnName="End_IP_num" />
+                <ScalarProperty Name="geoname_id" ColumnName="geoname_id" />
+                <ScalarProperty Name="registered_country_geoname_id" ColumnName="registered_country_geoname_id" />
+                <ScalarProperty Name="represented_country_geoname_id" ColumnName="represented_country_geoname_id" />
+                <ScalarProperty Name="is_anonymous_proxy" ColumnName="is_anonymous_proxy" />
+                <ScalarProperty Name="is_satellite_provider" ColumnName="is_satellite_provider" />
+                <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="accuracy_radius" ColumnName="accuracy_radius" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="shortenURLModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="PK_ClientID" ColumnName="PK_ClientID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+                <ScalarProperty Name="LoginCount" ColumnName="LoginCount" />
+                <ScalarProperty Name="APIKey" ColumnName="APIKey" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountryDatas">
+            <EntityTypeMapping TypeName="shortenURLModel.CountryData">
+              <MappingFragment StoreEntitySet="CountryData">
+                <ScalarProperty Name="PK_Country_ID" ColumnName="PK_Country_ID" />
+                <ScalarProperty Name="Start_IPv4_address" ColumnName="Start_IPv4_address" />
+                <ScalarProperty Name="End_IPv4_address" ColumnName="End_IPv4_address" />
+                <ScalarProperty Name="Start_IP_num" ColumnName="Start_IP_num" />
+                <ScalarProperty Name="End_IP_num" ColumnName="End_IP_num" />
+                <ScalarProperty Name="Country_code" ColumnName="Country_code" />
+                <ScalarProperty Name="Country_name" ColumnName="Country_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountryData_IPv4_GeoLite2">
+            <EntityTypeMapping TypeName="shortenURLModel.CountryData_IPv4_GeoLite2">
+              <MappingFragment StoreEntitySet="CountryData_IPv4_GeoLite2">
+                <ScalarProperty Name="PK_Country_ID_IPV4" ColumnName="PK_Country_ID_IPV4" />
+                <ScalarProperty Name="network" ColumnName="network" />
+                <ScalarProperty Name="Start_IPv4_address" ColumnName="Start_IPv4_address" />
+                <ScalarProperty Name="End_IPv4_address" ColumnName="End_IPv4_address" />
+                <ScalarProperty Name="Start_IP_num" ColumnName="Start_IP_num" />
+                <ScalarProperty Name="End_IP_num" ColumnName="End_IP_num" />
+                <ScalarProperty Name="geoname_id" ColumnName="geoname_id" />
+                <ScalarProperty Name="registered_country_geoname_id" ColumnName="registered_country_geoname_id" />
+                <ScalarProperty Name="represented_country_geoname_id" ColumnName="represented_country_geoname_id" />
+                <ScalarProperty Name="is_anonymous_proxy" ColumnName="is_anonymous_proxy" />
+                <ScalarProperty Name="is_satellite_provider" ColumnName="is_satellite_provider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ErrorLogs">
+            <EntityTypeMapping TypeName="shortenURLModel.ErrorLog">
+              <MappingFragment StoreEntitySet="ErrorLog">
+                <ScalarProperty Name="PKErrorLogId" ColumnName="PKErrorLogId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations_Data">
+            <EntityTypeMapping TypeName="shortenURLModel.Locations_Data">
+              <MappingFragment StoreEntitySet="Locations_Data">
+                <ScalarProperty Name="PK_LOC_ID" ColumnName="PK_LOC_ID" />
+                <ScalarProperty Name="locId" ColumnName="locId" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="metroCode" ColumnName="metroCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginHistories">
+            <EntityTypeMapping TypeName="shortenURLModel.LoginHistory">
+              <MappingFragment StoreEntitySet="LoginHistory">
+                <ScalarProperty Name="PKLoginHistoryId" ColumnName="PKLoginHistoryId" />
+                <ScalarProperty Name="FKPersonId" ColumnName="FKPersonId" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="LoginDateTime" ColumnName="LoginDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Master_Location">
+            <EntityTypeMapping TypeName="shortenURLModel.Master_Location">
+              <MappingFragment StoreEntitySet="Master_Location">
+                <ScalarProperty Name="PK_MASTERID" ColumnName="PK_MASTERID" />
+                <ScalarProperty Name="Start_IPv4_address" ColumnName="Start_IPv4_address" />
+                <ScalarProperty Name="End_IPv4_address" ColumnName="End_IPv4_address" />
+                <ScalarProperty Name="startIpNum" ColumnName="startIpNum" />
+                <ScalarProperty Name="endIpNum" ColumnName="endIpNum" />
+                <ScalarProperty Name="locId" ColumnName="locId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RIDDATAs">
+            <EntityTypeMapping TypeName="shortenURLModel.RIDDATA">
+              <MappingFragment StoreEntitySet="RIDDATA">
+                <ScalarProperty Name="PK_Rid" ColumnName="PK_Rid" />
+                <ScalarProperty Name="CampaignName" ColumnName="CampaignName" />
+                <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
+                <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="FK_ClientId" ColumnName="FK_ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHORTURLDATAs">
+            <EntityTypeMapping TypeName="shortenURLModel.SHORTURLDATA">
+              <MappingFragment StoreEntitySet="SHORTURLDATA">
+                <ScalarProperty Name="PK_Shorturl" ColumnName="PK_Shorturl" />
+                <ScalarProperty Name="Ipv4" ColumnName="Ipv4" />
+                <ScalarProperty Name="Ipv6" ColumnName="Ipv6" />
+                <ScalarProperty Name="ip_num" ColumnName="ip_num" />
+                <ScalarProperty Name="Browser" ColumnName="Browser" />
+                <ScalarProperty Name="Browser_version" ColumnName="Browser_version" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="MetroCode" ColumnName="MetroCode" />
+                <ScalarProperty Name="Req_url" ColumnName="Req_url" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+                <ScalarProperty Name="IsMobileDevice" ColumnName="IsMobileDevice" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FK_Uid" ColumnName="FK_Uid" />
+                <ScalarProperty Name="FK_RID" ColumnName="FK_RID" />
+                <ScalarProperty Name="FK_ClientID" ColumnName="FK_ClientID" />
+                <ScalarProperty Name="FK_City_Master_id" ColumnName="FK_City_Master_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UIDDATAs">
+            <EntityTypeMapping TypeName="shortenURLModel.UIDDATA">
+              <MappingFragment StoreEntitySet="UIDDATA">
+                <ScalarProperty Name="PK_Uid" ColumnName="PK_Uid" />
+                <ScalarProperty Name="FK_RID" ColumnName="FK_RID" />
+                <ScalarProperty Name="FK_ClientID" ColumnName="FK_ClientID" />
+                <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
+                <ScalarProperty Name="Longurl" ColumnName="Longurl" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UniqueNumber" ColumnName="UniqueNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City_Locations_GeoLite2">
+            <EntityTypeMapping TypeName="shortenURLModel.City_Locations_GeoLite2">
+              <MappingFragment StoreEntitySet="City_Locations_GeoLite2">
+                <ScalarProperty Name="PK_City_Location_ID" ColumnName="PK_City_Location_ID" />
+                <ScalarProperty Name="geoname_id" ColumnName="geoname_id" />
+                <ScalarProperty Name="locale_code" ColumnName="locale_code" />
+                <ScalarProperty Name="continent_code" ColumnName="continent_code" />
+                <ScalarProperty Name="continent_name" ColumnName="continent_name" />
+                <ScalarProperty Name="country_iso_code" ColumnName="country_iso_code" />
+                <ScalarProperty Name="country_name" ColumnName="country_name" />
+                <ScalarProperty Name="subdivision_1_iso_code" ColumnName="subdivision_1_iso_code" />
+                <ScalarProperty Name="subdivision_1_name" ColumnName="subdivision_1_name" />
+                <ScalarProperty Name="subdivision_2_iso_code" ColumnName="subdivision_2_iso_code" />
+                <ScalarProperty Name="subdivision_2_name" ColumnName="subdivision_2_name" />
+                <ScalarProperty Name="city_name" ColumnName="city_name" />
+                <ScalarProperty Name="metro_code" ColumnName="metro_code" />
+                <ScalarProperty Name="time_zone" ColumnName="time_zone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountryData_GeoLite2">
+            <EntityTypeMapping TypeName="shortenURLModel.CountryData_GeoLite2">
+              <MappingFragment StoreEntitySet="CountryData_GeoLite2">
+                <ScalarProperty Name="PK_Country_ID_GeoLite" ColumnName="PK_Country_ID_GeoLite" />
+                <ScalarProperty Name="geoname_id" ColumnName="geoname_id" />
+                <ScalarProperty Name="locale_code" ColumnName="locale_code" />
+                <ScalarProperty Name="continent_code" ColumnName="continent_code" />
+                <ScalarProperty Name="continent_name" ColumnName="continent_name" />
+                <ScalarProperty Name="country_iso_code" ColumnName="country_iso_code" />
+                <ScalarProperty Name="country_name" ColumnName="country_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="InsertintoUIDRID" FunctionName="shortenURLModel.Store.InsertintoUIDRID" />
+          <FunctionImportMapping FunctionImportName="InsertRIDData" FunctionName="shortenURLModel.Store.InsertRIDData" />
+          <FunctionImportMapping FunctionImportName="InsertSHORTURLData" FunctionName="shortenURLModel.Store.InsertSHORTURLData" />
+          <FunctionImportMapping FunctionImportName="InsertUIDData" FunctionName="shortenURLModel.Store.InsertUIDData" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="shortenURLModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="shortenURLModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="shortenURLModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="shortenURLModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="shortenURLModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="shortenURLModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="shortenURLModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="shortenURLModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="shortenURLModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="spGetALLCOUNTS" FunctionName="shortenURLModel.Store.spGetALLCOUNTS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="shortenURLModel.spGetALLCOUNTS_Result">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="YearsCount" ColumnName="YearsCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetALLCOUNTS1" FunctionName="shortenURLModel.Store.spGetALLCOUNTS1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="shortenURLModel.spGetALLCOUNTS1_Result">
+                <ScalarProperty Name="RequestedDate" ColumnName="RequestedDate" />
+                <ScalarProperty Name="RequestCount" ColumnName="RequestCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetCampaignSummary" FunctionName="shortenURLModel.Store.spGetCampaignSummary" />
+          <FunctionImportMapping FunctionImportName="spGetDashBoardSummary" FunctionName="shortenURLModel.Store.spGetDashBoardSummary" />
+          <FunctionImportMapping FunctionImportName="spGetDashBoardSummary1" FunctionName="shortenURLModel.Store.spGetDashBoardSummary1" />
+          <EntitySetMapping Name="tmp_rownum_update">
+            <EntityTypeMapping TypeName="shortenURLModel.tmp_rownum_update">
+              <MappingFragment StoreEntitySet="tmp_rownum_update">
+                <ScalarProperty Name="row_update" ColumnName="row_update" />
+                <ScalarProperty Name="PK_RowUpdate_ID" ColumnName="PK_RowUpdate_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="freeGeoipDatas">
+            <EntityTypeMapping TypeName="shortenURLModel.freeGeoipData">
+              <MappingFragment StoreEntitySet="freeGeoipData">
+                <ScalarProperty Name="MetroCode" ColumnName="MetroCode" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="ip_num" ColumnName="ip_num" />
+                <ScalarProperty Name="Ipv4" ColumnName="Ipv4" />
+                <ScalarProperty Name="PK_freeGeoip_id" ColumnName="PK_freeGeoip_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

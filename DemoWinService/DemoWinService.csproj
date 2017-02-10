@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FA073178-2D5B-415B-A8D7-839EF83F44C2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DemoWinService</RootNamespace>
+    <AssemblyName>DemoWinService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="City_Blocks_IPv4_GeoLite2.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="City_Locations_GeoLite2.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CountryCityModel.cs" />
+    <Compile Include="CountryData.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CountryData_GeoLite2.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CountryData_IPv4_GeoLite2.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataInsertionBO.cs" />
+    <Compile Include="DemoWinService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DemoWinService.Designer.cs">
+      <DependentUpon>DemoWinService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorLog.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorLogs.cs" />
+    <Compile Include="freeGeoipData.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Locations_Data.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoginHistory.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Master_Location.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program1.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RIDDATA.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShortenUrl.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShortenUrl.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShortenUrl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShortenUrl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShortenUrl.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SHORTURLDATA.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetALLCOUNTS1_Result.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetALLCOUNTS_Result.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tmp_rownum_update.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UIDDATA.cs">
+      <DependentUpon>ShortenUrl.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="ShortenUrl.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ShortenUrl.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config" />
+    <None Include="ShortenUrl.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShortenUrl.edmx</DependentUpon>
+      <LastGenOutput>ShortenUrl.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ShortenUrl.edmx.diagram">
+      <DependentUpon>ShortenUrl.edmx</DependentUpon>
+    </None>
+    <None Include="ShortenUrl.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShortenUrl.edmx</DependentUpon>
+      <LastGenOutput>ShortenUrl.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
