@@ -18,26 +18,33 @@ namespace DemoWinService
         System.Threading.Timer _timer;
         public DemoWinService()
         {
-            _timer = new System.Threading.Timer(
-            new TimerCallback(OnTimerCallBack), null, Timeout.Infinite, Timeout.Infinite);
+            //_timer = new System.Threading.Timer(
+            //new TimerCallback(OnTimerCallBack), null, Timeout.Infinite, Timeout.Infinite);
             InitializeComponent();
         }
 
         protected override void OnStart(string[] args)
         {
             MSYNC();
-             _timer.Change(0, 2000);
+            System.Timers.Timer timer = new System.Timers.Timer();
+            timer.Enabled = true;
+            timer.Interval = 10000;
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
+            // _timer.Change(0, 2000);
         }
-
+        protected void timer_Elapsed(object source, System.Timers.ElapsedEventArgs aa)
+        {
+            MSYNC();
+        }
         protected override void OnStop()
         {
            // LogMessage("Service Stopped - ");
         }
-        public void OnTimerCallBack(object state)
-        {
-            //LogMessage("Timer Tick - ");
-            MSYNC();
-        }
+        //public void OnTimerCallBack(object state)
+        //{
+        //    //LogMessage("Timer Tick - ");
+        //    MSYNC();
+        //}
         public void MSYNC()
         {
             try

@@ -32,8 +32,8 @@ namespace DemoWinService
                     shorturl_record.Country = obj.Country;
                     shorturl_record.CountryCode = obj.CountryCode;
                     shorturl_record.PostalCode = obj.PostalCode;
-                    shorturl_record.Latitude = obj.latitude;
-                    shorturl_record.Longitude = obj.longitude;
+                    shorturl_record.City_Latitude = obj.latitude;
+                    shorturl_record.City_Longitude = obj.longitude;
                     shorturl_record.MetroCode = obj.metro_code;
                     shorturl_record.FK_City_Master_id = obj.fk_city_master_id;
                     dc.SaveChanges();
