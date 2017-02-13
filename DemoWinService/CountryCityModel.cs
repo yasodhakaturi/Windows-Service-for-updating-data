@@ -25,6 +25,7 @@ namespace DemoWinService
             //public string accuracy_radius { get; set; }
             public int fk_city_master_id { get; set; }
             public int pk_shorturl_id { get; set; }
+            public string userAgent { get; set; }
 
 
         }
@@ -35,6 +36,7 @@ namespace DemoWinService
             public int localid { get; set; }
             public int pk_shorturl_id { get; set; }
             public int fk_city_master_id { get; set; }
+            public string userAgent { get; set; }
 
         }
         public class List_IP
@@ -42,6 +44,7 @@ namespace DemoWinService
             public int pk_shorturl_id { get; set; }
             public long? ipnum { get; set; }
             public string ipaddress { get; set; }
+            public string userAgent { get; set; }
 
         }
 }

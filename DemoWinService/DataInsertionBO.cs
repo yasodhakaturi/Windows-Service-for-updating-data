@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using EntityFramework.Extensions;
 using System.Net;
 using Newtonsoft.Json;
-
+using UAParser;
 namespace DemoWinService
 {
     class DataInsertionBO
@@ -27,6 +27,15 @@ namespace DemoWinService
                 var shorturl_record = dc.SHORTURLDATAs.SingleOrDefault(x => x.PK_Shorturl == obj.pk_shorturl_id);
                 if (shorturl_record != null)
                 {
+                    var uaParser = Parser.GetDefault();
+                    ClientInfo c = uaParser.Parse(obj.userAgent);
+                    if(c!=null)
+                    {
+                        shorturl_record.DeviceName = c.Device.Model;
+                        shorturl_record.DeviceBrand = c.Device.Brand;
+                        shorturl_record.OS_Name = c.OS.Family;
+                        shorturl_record.OS_Version = c.OS.Major;
+                    }
                     shorturl_record.City = obj.City;
                     shorturl_record.Region = obj.Region;
                     shorturl_record.Country = obj.Country;
@@ -78,7 +87,8 @@ namespace DemoWinService
                                                              latitude = f.Latitude,
                                                              longitude = f.Longitude,
                                                              metro_code = f.MetroCode,
-                                                             pk_shorturl_id = i.pk_shorturl_id
+                                                             pk_shorturl_id = i.pk_shorturl_id,
+                                                             userAgent=i.userAgent
                                                          }).ToList();
             if (freegeo_Table_Data.Count != 0)
             {
@@ -133,6 +143,7 @@ namespace DemoWinService
                     //obj.accuracy_radius = "";
                 }
                 obj.pk_shorturl_id = l.pk_shorturl_id;
+                obj.userAgent = l.userAgent;
                 //var res=  dc.SHORTURLDATAs.Where(x => x.PK_Shorturl == l.pk_shorturl_id).SingleOrDefault();
 
                 //      res.City = obj.City;
@@ -186,6 +197,7 @@ namespace DemoWinService
                     //obj.accuracy_radius = "";
                 }
                 obj.pk_shorturl_id = l.pk_shorturl_id;
+                obj.userAgent = l.userAgent;
                 //UpdateCityCountry(obj);
                 //var res = dc.SHORTURLDATAs.Where(x => x.PK_Shorturl == l.pk_shorturl_id).SingleOrDefault();
 

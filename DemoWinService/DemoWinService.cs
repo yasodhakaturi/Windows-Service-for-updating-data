@@ -25,7 +25,7 @@ namespace DemoWinService
 
         protected override void OnStart(string[] args)
         {
-            MSYNC();
+           // MSYNC();
             System.Timers.Timer timer = new System.Timers.Timer();
             timer.Enabled = true;
             timer.Interval = 10000;
@@ -57,13 +57,14 @@ namespace DemoWinService
                                        {
                                            ipnum = s.ip_num,
                                            ipaddress = s.Ipv4,
-                                           pk_shorturl_id = s.PK_Shorturl
+                                           pk_shorturl_id = s.PK_Shorturl,
+                                           userAgent=s.UserAgent
                                        }).ToList();
                 //check if any records are there for updation
                 if (ipobj.Count != 0)
                 {
                     //get matched records from master_location table
-                    List<locids> locids = ipobj.Where(i => dc.Master_Location.AsNoTracking().Any(foo => i.ipnum >= foo.startIpNum && i.ipnum <= foo.endIpNum)).Select(x => new locids() { ipnum = x.ipnum, pk_shorturl_id = x.pk_shorturl_id, localid = dc.Master_Location.Where(foo => x.ipnum >= foo.startIpNum && x.ipnum <= foo.endIpNum).Select(y => y.locId).FirstOrDefault(), fk_city_master_id = dc.Master_Location.Where(foo => x.ipnum >= foo.startIpNum && x.ipnum <= foo.endIpNum).Select(y => y.PK_MASTERID).FirstOrDefault() }).ToList();
+                    List<locids> locids = ipobj.Where(i => dc.Master_Location.AsNoTracking().Any(foo => i.ipnum >= foo.startIpNum && i.ipnum <= foo.endIpNum)).Select(x => new locids() {userAgent=x.userAgent, ipnum = x.ipnum, pk_shorturl_id = x.pk_shorturl_id, localid = dc.Master_Location.Where(foo => x.ipnum >= foo.startIpNum && x.ipnum <= foo.endIpNum).Select(y => y.locId).FirstOrDefault(), fk_city_master_id = dc.Master_Location.Where(foo => x.ipnum >= foo.startIpNum && x.ipnum <= foo.endIpNum).Select(y => y.PK_MASTERID).FirstOrDefault() }).ToList();
 
                     if (locids.Count != 0)
                     {
@@ -87,7 +88,9 @@ namespace DemoWinService
                                                 longitude = l.longitude,
                                                 metro_code = l.metroCode,
                                                 fk_city_master_id = i.fk_city_master_id,
-                                                pk_shorturl_id = i.pk_shorturl_id
+                                                pk_shorturl_id = i.pk_shorturl_id,
+                                                userAgent=i.userAgent
+
 
                                             }).ToList();
                         if (list_CountryCity.Count != 0)
